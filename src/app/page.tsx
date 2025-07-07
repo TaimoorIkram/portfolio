@@ -374,19 +374,19 @@ export default function Home() {
         {
           name: "Random Epics",
           description: "Candid moments of urban life and human interactions",
-          imageUrl: "/images/photos/toyota.png",
+          imageUrl: "/images/photos/toyota.jpg",
           rating: "Featured"
         },
         {
           name: "Portrait Series",
           description: "Character studies focusing on emotion and expression",
-          imageUrl: "/images/photos/flowers_altit_fort.png",
+          imageUrl: "/images/photos/flowers_altit_fort.jpg",
           rating: "Featured"
         },
         {
           name: "Landscape Collection",
           description: "Natural beauty captured during golden hour moments",
-          imageUrl: "/images/photos/husseini-bridge.png",
+          imageUrl: "/images/photos/husseini-bridge.jpg",
           rating: "Featured"
         },
         {
@@ -410,7 +410,7 @@ export default function Home() {
         {
           name: "Breaking Bad",
           description: "Masterclass in character transformation and moral complexity",
-          imageUrl: "/images/series/breaking-bad.png",
+          imageUrl: "/images/series/breaking-bad.jpg",
           genre: "Crime Drama",
           year: "2008-2013",
           rating: "9.5/10"
@@ -418,7 +418,7 @@ export default function Home() {
         {
           name: "Severance",
           description: "Brilliant exploration of work-life balance and identity",
-          imageUrl: "/images/series/severance.png",
+          imageUrl: "/images/series/severance.jpg",
           genre: "Psychological Thriller",
           year: "2022",
           rating: "9.0/10"
@@ -426,7 +426,7 @@ export default function Home() {
         {
           name: "Arcane",
           description: "Revolutionary animation and world-building in gaming adaptation",
-          imageUrl: "/images/series/arcane.png",
+          imageUrl: "/images/series/arcane.jpg",
           genre: "Animated Drama",
           year: "2021",
           rating: "9.4/10"
@@ -434,7 +434,7 @@ export default function Home() {
         {
           name: "Squid Game",
           description: "Social commentary through survival thriller framework",
-          imageUrl: "/images/series/squid-game.png",
+          imageUrl: "/images/series/squid-game.jpg",
           genre: "Survival Drama",
           year: "2021",
           rating: "8.9/10"
