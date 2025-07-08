@@ -4,16 +4,12 @@ import AnimatedSectionHeader from "@/components/AnimatedSectionHeader";
 import CertificateCard from "@/components/CertificateCard";
 import EducationCard from "@/components/EducationCard";
 import ExperienceCard from "@/components/ExperienceCard";
-import GenericActionButton from "@/components/GenericActionButton";
 import InterestCard from "@/components/InterestCard";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import ScrollFadeIn from "@/components/ScrollFadeIn";
-import SectionHeader from "@/components/SectionHeader";
 import { useSectionRefs } from "@/contexts/SectionRefsContext";
 import { Courier_Prime } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
-import { RefObject, useRef } from "react";
 
 const courier_prime = Courier_Prime({
   weight: "700",
@@ -23,7 +19,7 @@ const courier_prime = Courier_Prime({
 
 export default function Home() {
 
-  const { skillsRef, educationRef, experienceRef, projectsRef, certificatesRef } = useSectionRefs();
+  const { topRef, educationRef, experienceRef, projectsRef, certificatesRef, interestsRef } = useSectionRefs();
 
   interface Project {
     year: string;
@@ -480,7 +476,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="h-screen justify-center flex flex-col-reverse md:grid md:grid-cols-1 md:grid-cols-2 md:items-center">
+      <div ref={topRef} className="h-screen justify-center flex flex-col-reverse md:grid md:grid-cols-1 md:grid-cols-2 md:items-center">
         <div className="flex flex-col gap-3 text-center md:text-left">
           <p className="text-3xl md:text-6xl font-[600]">Hi there, I am <b className="text-crimson-500">Taimoor</b>.</p>
           <p className="text-gray-400 text-lg md:text-xl">A Software Engineering Graduate, Startup Enthusiast and a Hobbyist Photographer.</p>
@@ -531,82 +527,91 @@ export default function Home() {
         </div>
       </div>
 
-      <ScrollFadeIn>
-        <AnimatedSectionHeader ref={educationRef} title="Education" />
-      </ScrollFadeIn>
-      <div className="flex flex-col gap-3">
-        {educations.map((education, index) => (
-          <ScrollFadeIn key={index}>
-            <EducationCard
-              {...education}
-            />
-          </ScrollFadeIn>
-        ))}
-      </div>
-
-      <ScrollFadeIn>
-        <AnimatedSectionHeader ref={projectsRef} title="Projects" />
-      </ScrollFadeIn>
-      <div className="flex flex-col items-center">
-        <div className="items-center flex flex-row inset-x-0 h-full absolute justify-center">
-          <div className="shadow-[0_0_50px_5px_#D2003F] brightness-110 saturate-150 rounded-full bg-crimson-500 relative w-[700px] h-[700px]"></div>
-        </div>
+      <div ref={educationRef}>
         <ScrollFadeIn>
-          <ProjectCarousel
-            projects={projects}
-          />
+          <AnimatedSectionHeader title="Education" />
         </ScrollFadeIn>
+        <div className="flex flex-col gap-3">
+          {educations.map((education, index) => (
+            <ScrollFadeIn key={index}>
+              <EducationCard
+                {...education}
+              />
+            </ScrollFadeIn>
+          ))}
+        </div>
       </div>
 
-      <ScrollFadeIn>
-        <AnimatedSectionHeader ref={certificatesRef} title="Certificates" />
-      </ScrollFadeIn>
-      <div className="flex flex-col items-center">
-        {certificates.map((certificate, index) =>
-          <ScrollFadeIn key={index}>
-            <CertificateCard
-              year={certificate.year}
-              title={certificate.title}
-              about={certificate.about}
-              courses={certificate.courses}
-              certificateUrl={certificate.certificateUrl}
-              platformIconUrl={certificate.platformIconUrl}
+      <div ref={projectsRef}>
+        <ScrollFadeIn>
+          <AnimatedSectionHeader title="Projects" />
+        </ScrollFadeIn>
+        <div className="flex flex-col items-center">
+          <div className="items-center flex flex-row inset-x-0 h-full absolute justify-center">
+            <div className="shadow-[0_0_50px_5px_#D2003F] brightness-110 saturate-150 rounded-full bg-crimson-500 relative w-[700px] h-[700px]"></div>
+          </div>
+          <ScrollFadeIn>
+            <ProjectCarousel
+              projects={projects}
             />
           </ScrollFadeIn>
-        )}
+        </div>
       </div>
 
-
-      <ScrollFadeIn>
-        <AnimatedSectionHeader ref={experienceRef} title="Experience" />
-      </ScrollFadeIn>
-      <div className="flex flex-col gap-3">
-        {experiences.map((exp, index) => (
-          <ScrollFadeIn key={index}>
-            <ExperienceCard
-              companyName={exp.companyName}
-              companyLogoUrl={exp.companyLogoUrl}
-              location={exp.location}
-              companyDescription={exp.companyDescription}
-              roles={exp.roles}
-              technologies={exp.technologies}
-              companyUrl={exp.companyUrl}
-            />
-          </ScrollFadeIn>
-        ))}
+      <div ref={certificatesRef}>
+        <ScrollFadeIn>
+          <AnimatedSectionHeader title="Certificates" />
+        </ScrollFadeIn>
+        <div className="flex flex-col items-center">
+          {certificates.map((certificate, index) =>
+            <ScrollFadeIn key={index}>
+              <CertificateCard
+                year={certificate.year}
+                title={certificate.title}
+                about={certificate.about}
+                courses={certificate.courses}
+                certificateUrl={certificate.certificateUrl}
+                platformIconUrl={certificate.platformIconUrl}
+              />
+            </ScrollFadeIn>
+          )}
+        </div>
       </div>
 
-      <ScrollFadeIn>
-        <AnimatedSectionHeader title="Other Interests" />
-      </ScrollFadeIn>
-      <div className="space-y-8">
-        {interests.map((interest, index) => (
-          <ScrollFadeIn key={index}>
-            <InterestCard
-              {...interest}
-            />
-          </ScrollFadeIn>
-        ))}
+      <div ref={experienceRef}>
+        <ScrollFadeIn>
+          <AnimatedSectionHeader title="Experience" />
+        </ScrollFadeIn>
+        <div className="flex flex-col gap-3">
+          {experiences.map((exp, index) => (
+            <ScrollFadeIn key={index}>
+              <ExperienceCard
+                companyName={exp.companyName}
+                companyLogoUrl={exp.companyLogoUrl}
+                location={exp.location}
+                companyDescription={exp.companyDescription}
+                roles={exp.roles}
+                technologies={exp.technologies}
+                companyUrl={exp.companyUrl}
+              />
+            </ScrollFadeIn>
+          ))}
+        </div>
+      </div>
+
+      <div ref={interestsRef}>
+        <ScrollFadeIn>
+          <AnimatedSectionHeader title="Other Interests" />
+        </ScrollFadeIn>
+        <div className="space-y-8">
+          {interests.map((interest, index) => (
+            <ScrollFadeIn key={index}>
+              <InterestCard
+                {...interest}
+              />
+            </ScrollFadeIn>
+          ))}
+        </div>
       </div>
     </div>
   );
