@@ -6,6 +6,8 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import ProjectCard from './ProjectCard';
 
+const CARD_SPACING = 6.5;
+
 interface Project {
   year: string;
   title: string;
@@ -39,7 +41,7 @@ const ProjectScene: React.FC<{
       progress.current = currentIndex;
       setAnimating(false);
     }
-    groupRef.current.position.x = -progress.current * 5; // Increased spacing
+    groupRef.current.position.x = -progress.current * CARD_SPACING; // Increased spacing
   });
 
   return (
@@ -47,15 +49,15 @@ const ProjectScene: React.FC<{
       {projects.map((project, i) => (
         <Html
           key={i}
-          position={[i * 5, 0, 0]} // Adjusted spacing
+          position={[i * CARD_SPACING, 0, 0]} // Adjusted spacing
           center
           zIndexRange={[0, 0]}
         >
           <div
             onClick={() => onClick(i)}
-            className={`transition-all duration-500 ease-in-out transform
+            className={`transition-all duration-500 ease-in-out transform mx-auto
               ${i === currentIndex ? 'scale-105 opacity-100 z-10' : 'scale-90 opacity-100 z-0'}
-              w-[320px] md:w-[384px]`}
+              w-[320px] md:w-auto`}
           >
             <ProjectCard
               project={project}
@@ -103,39 +105,99 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isAnimating]);
 
+  useEffect(() => {
+    let throttleTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (throttleTimeout || isAnimating) return;
+
+      // Only handle horizontal scroll
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        if (e.deltaX > 20) nextProject();
+        else if (e.deltaX < -20) prevProject();
+
+        // Throttle for 500ms to avoid rapid scrolls
+        throttleTimeout = setTimeout(() => {
+          throttleTimeout = null;
+        }, 500);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: true });
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      if (throttleTimeout) clearTimeout(throttleTimeout);
+    };
+  }, [isAnimating]);
+
+  useEffect(() => {
+    let startX: number | null = null;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+
+      if (Math.abs(deltaX) > 50 && !isAnimating) {
+        if (deltaX > 0) prevProject(); // Swipe right → prev
+        else nextProject();           // Swipe left → next
+      }
+
+      startX = null;
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isAnimating]);
+
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <button
-          onClick={prevProject}
-          disabled={isAnimating}
-          className="p-3 bg-black text-white rounded-full shadow-lg hover:scale-110 transition-all duration-200 disabled:opacity-50"
-        >
-          <span className="text-xl">⟨</span>
-        </button>
-        <div className="text-sm">
-          {currentIndex + 1} / {projects.length}
-        </div>
-        <button
-          onClick={nextProject}
-          disabled={isAnimating}
-          className="p-3 bg-black text-white rounded-full shadow-lg hover:scale-110 transition-all duration-200 disabled:opacity-50"
-        >
-          <span className="text-xl">⟩</span>
-        </button>
-      </div>
+    <div className="relative w-full max-w-7xl mx-auto px-4">
 
       <div className="w-full h-[700px] relative">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight />
-          <ProjectScene
-            projects={projects}
-            currentIndex={currentIndex}
-            direction={direction}
-            setAnimating={setIsAnimating}
-            onClick={goToProject}
-          />
-        </Canvas>
+        <div className="hidden md:flex justify-between items-center absolute top-1/2 left-0 right-0 px-4 z-10 -translate-y-1/2">
+          <button
+            onClick={prevProject}
+            disabled={isAnimating}
+            className="p-3 bg-black text-white rounded-full shadow-lg hover:scale-110 transition-all duration-200 disabled:opacity-50"
+          >
+            <span className="text-xl">⟨</span>
+          </button>
+
+          <button
+            onClick={nextProject}
+            disabled={isAnimating}
+            className="p-3 bg-black text-white rounded-full shadow-lg hover:scale-110 transition-all duration-200 disabled:opacity-50"
+          >
+            <span className="text-xl">⟩</span>
+          </button>
+        </div>
+        <div className="w-full h-[700px] relative">
+          {/* Left fade */}
+          <div className="hidden md:block absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-black to-transparent pointer-events-none z-20" />
+
+          {/* Right fade */}
+          <div className="hidden md:block absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-black to-transparent pointer-events-none z-20" />
+
+          <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+            <ambientLight />
+            <ProjectScene
+              projects={projects}
+              currentIndex={currentIndex}
+              direction={direction}
+              setAnimating={setIsAnimating}
+              onClick={goToProject}
+            />
+          </Canvas>
+        </div>
       </div>
 
       <div className="flex justify-center mt-6 gap-2">
@@ -143,9 +205,8 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
           <button
             key={index}
             onClick={() => goToProject(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-200 ${
-              index === currentIndex ? 'bg-blue-500 w-8' : 'bg-gray-300 hover:bg-gray-400'
-            }`}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-blue-500 w-8' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
             aria-label={`Go to project ${index + 1}`}
           />
         ))}

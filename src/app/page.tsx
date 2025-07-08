@@ -200,7 +200,7 @@ export default function Home() {
       year: '2025',
       title: 'NEFT',
       skills: ['Vue.js', 'Django', 'SQLite', 'REST API'],
-      details: 'A digital solution to transparently manage student contributions like donations, to their CRs. This application effectively manages all transactions, where they came from, where they have gone, and everywhere in-between. This was developed as a community service project for my university.',
+      details: 'Developed as a community service project for my university, this application effectively manages all transactions, where they came from, where they have gone, and everywhere in-between.',
       features: [
         'Student transaction tracking',
         'CR, Batch President and NSF Team\'s individual dashboards',
@@ -547,9 +547,6 @@ export default function Home() {
           <AnimatedSectionHeader title="Projects" />
         </ScrollFadeIn>
         <div className="flex flex-col items-center">
-          <div className="items-center flex flex-row inset-x-0 h-full absolute justify-center">
-            <div className="shadow-[0_0_50px_5px_#D2003F] brightness-110 saturate-150 rounded-full bg-crimson-500 relative w-[700px] h-[700px]"></div>
-          </div>
           <ScrollFadeIn>
             <ProjectCarousel
               projects={projects}

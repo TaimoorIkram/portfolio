@@ -36,15 +36,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div
       className={`
-        relative bg-gray-900 rounded-xl shadow-lg transition-all duration-500 ease-in-out cursor-pointer
+        relative bg-gray-900 rounded-xl shadow-lg transition-all duration-500 ease-in-out cursor-pointer outline-crimson-500
         ${isActive
-          ? 'opacity-100 scale-100 z-10'
-          : 'opacity-40 scale-90 z-0'
+          ? 'opacity-100 scale-100 z-10 outline-2'
+          : 'opacity-40 scale-90 z-0 outline-0'
         }
         ${isVisible ? 'translate-x-0' : 'translate-x-full'}
         hover:shadow-xl
-        w-full max-w-md mx-auto
-        md:w-80 lg:w-96
+        w-full mx-auto
+        md:w-80 lg:w-[500px]
       `}
       onClick={onClick}
     >

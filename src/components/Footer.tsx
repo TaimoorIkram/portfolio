@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <div className='flex flex-col items-center gap-6 p-5'>
       <div className='w-full flex flex-col gap-5 justify-between items-center'>
-        <p className='text-xl font-bold'>Life's like a game.</p>
+        <p className='text-xl font-bold'>Life&apos;s like a game.</p>
         <div className='flex flex-row gap-3'>
           <Link href={profileLinks.linkedin}>
             <i className="bi bi-linkedin hover:text-gray-500 text-2xl"></i>

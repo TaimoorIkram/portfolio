@@ -1,5 +1,6 @@
 import React from 'react';
 import GenericActionButton from './GenericActionButton';
+import Link from 'next/link';
 
 interface CertificateCardProps {
     year: string;
@@ -59,12 +60,12 @@ const CertificateCard: React.FC<CertificateCardProps> = ({
                 </div>
 
                 {/* View Button */}
-                <div>
+                <Link href={certificateUrl}>
                     <GenericActionButton
                         label="View Certificate"
                         icon="award-fill"
                     />
-                </div>
+                </Link>
             </div>
         </div>
     );

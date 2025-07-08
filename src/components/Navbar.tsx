@@ -5,6 +5,7 @@ import GenericButton from './GenericButton';
 import GenericActionButton from './GenericActionButton';
 import FullScreenDropdown from './FullScreenDropdown';
 import { useSectionRefs } from '@/contexts/SectionRefsContext';
+import Link from 'next/link';
 
 export default function Navbar() {
     const [isSticky, setIsSticky] = useState(false);
@@ -52,12 +53,17 @@ export default function Navbar() {
         { onClick: () => scrollToSection(certificatesRef), label: "Certificates" },
         { onClick: () => scrollToSection(experienceRef), label: "Experience" },
         { onClick: () => scrollToSection(interestsRef), label: "Other Interests" },
-        { special: true, icon: "download", label: "Download CV" },
+        { special: true, download: "/docs/TaimoorIkram_Resume_Test.pdf", icon: "download", label: "Download CV" },
     ];
 
     const actionButtons = [<div key={-1}></div>]
     actionButtons.push(...actions.map((action, idx) => {
-        if (action.special) return <GenericActionButton key={idx} icon={action.icon} label={action.label} />
+        if (action.special) {
+            if (action.download) return <Link key={idx} download={true} href={action.download}>
+                <GenericActionButton icon={action.icon} label={action.label} />
+            </Link>
+            else return <></>
+        }
         else return <GenericButton key={idx} onClick={action.onClick} label={action.label} sectionIndex={idx+1} currentSectionIndex={currentRef} />
     }));
 
