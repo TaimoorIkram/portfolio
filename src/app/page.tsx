@@ -9,6 +9,7 @@ import ProjectCarousel from "@/components/ProjectCarousel";
 import ScrollFadeIn from "@/components/ScrollFadeIn";
 import { useSectionRefs } from "@/contexts/SectionRefsContext";
 import { Courier_Prime } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 
 const courier_prime = Courier_Prime({
@@ -40,19 +41,19 @@ export default function Home() {
     nust: {
       name: "National University of Sciences and Technology",
       location: "Islamabad, Pakistan",
-      logo: "https://nust.edu.pk/wp-content/themes/nust-main/assets/img/Header-logo.png",
+      logo: "/images/icons/nust.png",
       website: "https://nust.edu.pk/"
     },
     pgc: {
       name: "Punjab Group of Colleges",
       location: "Sargodha, Pakistan",
-      logo: "https://crystalpng.com/wp-content/uploads/2024/10/PGC-logo-768x768.png",
+      logo: "/images/icons/pgc.png",
       website: "https://pgc.edu/"
     },
     cgss: {
       name: "Connoisseur Grammar School System",
       location: "Sargodha, Pakistan",
-      logo: "https://cgss.edu.pk/wp-content/uploads/2023/11/Conn-2-297x300.png",
+      logo: "/images/icons/cgss.webp",
       webiste: "https://cgss.edu.pk/"
     }
   }
@@ -281,11 +282,11 @@ export default function Home() {
   // data/experiences.ts
   const companyDetails = {
     rapidStart: {
-      logo: "https://media.licdn.com/dms/image/v2/D560BAQGq_1KEOwKukw/company-logo_200_200/company-logo_200_200/0/1708859246681?e=1757548800&v=beta&t=OptmgF3wcrP4nb7eSn31_36xIpVsmTNXV7GZjfJtf9U",
+      logo: "/images/icons/rapidstart.jpeg",
       profile: "https://www.linkedin.com/company/rapidstartapp/posts/?feedView=all"
     },
     hural: {
-      logo: "https://media.licdn.com/dms/image/v2/D4D0BAQEUDDvaNx8swA/company-logo_200_200/company-logo_200_200/0/1723231497498?e=1757548800&v=beta&t=6dyjtuxzPcBB0MQ7idc5FapKVhdLe1CIy-nQP_8GFps",
+      logo: "/images/icons/hural.jpeg",
       profile: "https://www.linkedin.com/company/hural%E2%84%A2/posts/?feedView=all"
     },
   }
@@ -499,7 +500,7 @@ export default function Home() {
             <div
               className="flex flex-row items-baseline z-10 absolute top-0 left-0 w-[80vw] h-[80vw] -translate-x-[-7.5%] -translate-y-[-7.5%] md:w-[45vw] md:h-[45vw] md:-translate-y-[-5%] md:-translate-x-[-5%] rounded-full flex items-center justify-start overflow-hidden"
             >
-              <img
+              <Image width={200} height={200}
                 src="/images/me.png"
                 alt="Background"
                 className="relative scale-110 inset-0 w-[100vw] object-cover"
