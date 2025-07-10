@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -26,7 +27,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <img src="/images/signature.jpg" alt="My Unofficial Signature" className='w-20 ' />
+      <Image width={200} height={200} src="/images/signature.jpg" alt="My Unofficial Signature" className='w-20 ' />
       <p className='text-gray-500'>&copy; 2025 Taimoor Ikram.</p>
     </div>
   )

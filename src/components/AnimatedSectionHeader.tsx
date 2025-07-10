@@ -23,16 +23,16 @@ const AnimatedSectionHeader: React.FC<AnimatedSectionHeaderProps> = ({ title, re
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [headerRef]);
 
   return (
-    <div 
+    <div
       ref={headerRef}
       className="relative flex flex-row justify-center items-center text-center py-8"
     >
       {/* Subtle background accent */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div 
+        <div
           className={`
             w-full h-px bg-gradient-to-r from-transparent via-crimson-300 to-transparent
             transition-all duration-1000 ease-out
@@ -43,7 +43,7 @@ const AnimatedSectionHeader: React.FC<AnimatedSectionHeaderProps> = ({ title, re
 
       {/* Main title */}
       <div className="relative z-10">
-        <h2 
+        <h2
           className={`
             text-3xl md:text-4xl lg:text-5xl font-black
             text-crimson-100 transition-all duration-700 ease-out tracking-tight
@@ -52,9 +52,9 @@ const AnimatedSectionHeader: React.FC<AnimatedSectionHeaderProps> = ({ title, re
         >
           {title}
         </h2>
-        
+
         {/* Animated accent dot */}
-        <div 
+        <div
           className={`
             mx-auto mt-3 w-2 h-2 bg-crimson-400 rounded-full
             transition-all duration-1000 ease-out
@@ -67,7 +67,7 @@ const AnimatedSectionHeader: React.FC<AnimatedSectionHeaderProps> = ({ title, re
       </div>
 
       {/* Subtle side accents */}
-      <div 
+      <div
         className={`
           absolute left-0 top-1/2 w-8 h-px bg-gradient-to-r from-crimson-200 to-transparent
           transition-all duration-800 ease-out transform -translate-y-1/2
@@ -75,7 +75,7 @@ const AnimatedSectionHeader: React.FC<AnimatedSectionHeaderProps> = ({ title, re
         `}
         style={{ animationDelay: '0.5s' }}
       />
-      <div 
+      <div
         className={`
           absolute right-0 top-1/2 w-8 h-px bg-gradient-to-l from-crimson-200 to-transparent
           transition-all duration-800 ease-out transform -translate-y-1/2

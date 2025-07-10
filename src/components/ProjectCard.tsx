@@ -91,7 +91,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* GitHub Button */}
         <div className="pt-4">
-          <Link href={project.githubUrl}>
+          <Link href={githubUrl}>
             <GenericActionButton label='View on GitHub' icon='github' />
           </Link>
         </div>

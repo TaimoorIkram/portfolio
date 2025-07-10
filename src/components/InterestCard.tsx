@@ -3,6 +3,7 @@ import GenericActionButton from './GenericActionButton';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getListItemVariants } from '@/config/AnimationVariantsConfig';
+import Image from 'next/image';
 
 interface InterestItem {
     name: string;
@@ -37,18 +38,8 @@ const InterestCard: React.FC<InterestCardProps> = ({
     showAsFlex = false
 }) => {
     const [expandedItems, setExpandedItems] = useState<boolean>(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-
     const toggleItems = () => {
         setExpandedItems(!expandedItems);
-    };
-
-    const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % items.length);
-    };
-
-    const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + items.length) % items.length);
     };
 
     const hasExpandableContent = items.length > 0;
@@ -125,7 +116,7 @@ const InterestCard: React.FC<InterestCardProps> = ({
                                                 className="bg-gray-800 rounded-lg p-3 border border-gray-700 flex gap-3"
                                             >
                                                 {item.imageUrl && (
-                                                    <img
+                                                    <Image width={200} height={200}
                                                         src={item.imageUrl}
                                                         alt={item.name}
                                                         className="w-20 h-32 object-fill rounded-md flex-shrink-0"
@@ -177,7 +168,7 @@ const InterestCard: React.FC<InterestCardProps> = ({
                                                         className="relative flex-shrink-0 w-80 h-80 rounded-lg overflow-hidden border border-gray-700 bg-gray-800"
                                                     >
                                                         {item.imageUrl && (
-                                                            <img
+                                                            <Image width={200} height={200}
                                                                 src={item.imageUrl}
                                                                 alt={item.name}
                                                                 className="w-full h-full object-cover"

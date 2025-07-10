@@ -3,6 +3,7 @@ import GenericActionButton from './GenericActionButton';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getListItemVariants } from '@/config/AnimationVariantsConfig';
+import Image from 'next/image';
 
 interface StandoutCourse {
     name: string;
@@ -71,7 +72,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
 
             {/* Left: Institution Logo */}
             <div className="flex-shrink-0">
-                <img
+                <Image width={200} height={200}
                     src={institutionLogoUrl}
                     alt={`${institutionName} Logo`}
                     className="w-16 h-16 object-contain rounded-lg"

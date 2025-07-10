@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import ProjectCard from './ProjectCard';
+import * as THREE from 'three';
 
 const CARD_SPACING = 6.5;
 
@@ -27,8 +28,8 @@ const ProjectScene: React.FC<{
   direction: 'next' | 'prev';
   setAnimating: (v: boolean) => void;
   onClick: (i: number) => void;
-}> = ({ projects, currentIndex, direction, setAnimating, onClick }) => {
-  const groupRef = useRef<any>();
+}> = ({ projects, currentIndex, setAnimating, onClick }) => {
+  const groupRef = useRef<THREE.Group>(null);
   const progress = useRef(0);
 
   useFrame((_, delta) => {

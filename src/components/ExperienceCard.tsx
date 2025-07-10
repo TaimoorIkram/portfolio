@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import GenericActionButton from './GenericActionButton';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface ExperienceRole {
     title: string;
@@ -52,7 +53,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 
             {/* Left: Company Logo */}
             <div className="flex-shrink-0">
-                <img
+                <Image width={200} height={200}
                     src={companyLogoUrl}
                     alt={`${companyName} Logo`}
                     className="w-16 h-16 object-contain rounded-lg"

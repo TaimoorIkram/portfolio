@@ -1,6 +1,7 @@
 import React from 'react';
 import GenericActionButton from './GenericActionButton';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CertificateCardProps {
     year: string;
@@ -26,7 +27,7 @@ const CertificateCard: React.FC<CertificateCardProps> = ({
 
             {/* Left: Logo */}
             <div className="flex-shrink-0">
-                <img
+                <Image width={200} height={200}
                     src={platformIconUrl}
                     alt={`${title} Platform Logo`}
                     className="w-16 h-16 object-contain"

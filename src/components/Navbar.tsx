@@ -1,6 +1,6 @@
 'use client';
 
-import React, { RefObject, useEffect, useState } from 'react';
+import React, { RefObject, useEffect, useMemo, useState } from 'react';
 import GenericButton from './GenericButton';
 import GenericActionButton from './GenericActionButton';
 import FullScreenDropdown from './FullScreenDropdown';
@@ -12,15 +12,13 @@ export default function Navbar() {
 
     const { topRef, interestsRef, educationRef, experienceRef, projectsRef, certificatesRef } = useSectionRefs();
     const [currentRef, setCurrentRef] = useState<number>(-1);
-    const refsList = [topRef, educationRef, projectsRef, certificatesRef, experienceRef, interestsRef];
+    const refsList = useMemo(() => [topRef, educationRef, projectsRef, certificatesRef, experienceRef, interestsRef], [topRef, educationRef, projectsRef, certificatesRef, experienceRef, interestsRef]);
 
     const scrollToSection = (sectionRef: RefObject<HTMLDivElement | null>, offset = 80) => {
         if (sectionRef.current) {
             const y = sectionRef.current.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({ top: y, behavior: 'smooth' });
             setCurrentRef(refsList.indexOf(sectionRef));
-            console.log("Attempted to update current ref from", currentRef, "to", refsList.indexOf(sectionRef));
-
         }
     };
 
@@ -33,11 +31,8 @@ export default function Navbar() {
             for (let i = refsList.length-1; i >= 0 ; i--) {
                 const ref = refsList[i];
                 const element = ref.current;
-                if (element && (element.offsetTop <= scrollPosition)) {
-                    console.log(scrollPosition, "???", element.offsetTop);
-                    
+                if (element && (element.offsetTop <= scrollPosition)) {                    
                     setCurrentRef(i);
-                    console.log("Attempted to update current ref from", currentRef, "to", refsList.indexOf(ref));
                     break;
                 }
             }
@@ -45,7 +40,7 @@ export default function Navbar() {
 
         window.addEventListener('scroll', onScroll);
         return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+    }, [currentRef, refsList]);
 
     const actions = [
         { onClick: () => scrollToSection(educationRef), label: "Education" },
