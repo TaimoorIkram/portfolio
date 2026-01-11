@@ -117,7 +117,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
                         <ul className="space-y-1">
                             {achievements.map((achievement, idx) => (
                                 <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
-                                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span className="w-1.5 h-1.5 bg-crimson-500 rounded-full mt-1.5 flex-shrink-0"></span>
                                     {achievement}
                                 </li>
                             ))}
@@ -174,7 +174,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
                                                             <p className="text-xs text-gray-400 mt-1">{course.description}</p>
                                                         )}
                                                     </div>
-                                                    <span className="text-xs text-blue-400 font-semibold mt-1 sm:mt-0">
+                                                    <span className="text-xs text-crimson-400 font-semibold mt-1 sm:mt-0">
                                                         {course.grade}
                                                     </span>
                                                 </div>

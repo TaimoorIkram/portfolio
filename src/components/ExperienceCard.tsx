@@ -132,7 +132,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                                                     <ul className="space-y-1">
                                                         {role.responsibilities.map((responsibility, idx) => (
                                                             <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
-                                                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1.5 flex-shrink-0"></span>
+                                                                <span className="w-1.5 h-1.5 bg-crimson-500 rounded-full mt-1.5 flex-shrink-0"></span>
                                                                 {responsibility}
                                                             </li>
                                                         ))}
@@ -146,7 +146,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                                                         <ul className="space-y-1">
                                                             {role.achievements.map((achievement, idx) => (
                                                                 <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
-                                                                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></span>
+                                                                    <span className="w-1.5 h-1.5 bg-crimson-500 rounded-full mt-1.5 flex-shrink-0"></span>
                                                                     {achievement}
                                                                 </li>
                                                             ))}

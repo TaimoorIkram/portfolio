@@ -53,7 +53,7 @@ const CertificateCard: React.FC<CertificateCardProps> = ({
                     <ul className="list-disc space-y-1 text-sm">
                         {courses.map((course, idx) => (
                             <li key={idx} className='flex items-start gap-2 text-sm'>
-                                <span className='w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0'></span>
+                                <span className='w-1.5 h-1.5 bg-crimson-500 rounded-full mt-2 flex-shrink-0'></span>
                                 {course}
                             </li>
                         ))}
