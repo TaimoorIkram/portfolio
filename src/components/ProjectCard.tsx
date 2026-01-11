@@ -8,7 +8,8 @@ interface Project {
   skills: string[];
   details: string;
   features: string[];
-  githubUrl: string;
+  githubUrl?: string;
+  projectUrl?: string;
 }
 
 interface ProjectCardProps {
@@ -30,19 +31,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     skills,
     details,
     features,
-    githubUrl
+    githubUrl,
+    projectUrl
   } = project;
 
   return (
     <div
       className={`
-        relative bg-gray-900 rounded-xl shadow-lg transition-all duration-500 ease-in-out cursor-pointer outline-crimson-500
+        relative bg-gray-900 rounded-xl transition-all duration-500 ease-in-out cursor-pointer outline-crimson-500
         ${isActive
-          ? 'opacity-100 scale-100 z-10 outline-2'
+          ? 'opacity-100 scale-100 z-10 outline-2 shadow-[0_0_25px_1px_#D2003F]'
           : 'opacity-40 scale-90 z-0 outline-0'
         }
         ${isVisible ? 'translate-x-0' : 'translate-x-full'}
-        hover:shadow-xl
         w-full mx-auto
         md:w-80 lg:w-[500px]
       `}
@@ -55,8 +56,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold leading-tight">
-          {title}
+        <h3 className="text-xl md:text-2xl font-bold leading-tight items-center flex gap-2">
+          {title} 
+          {projectUrl && (
+            <span className="text-sm text-crimson-500">
+              <i className='bi bi-star-fill'></i>
+            </span>
+          )}
         </h3>
 
         {/* Skills Tags */}
@@ -64,7 +70,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {skills.map((skill, index) => (
             <span
               key={index}
-              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-crimson-300 text-white"
+              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-crimson-500/50 text-white"
             >
               {skill}
             </span>
@@ -82,7 +88,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <ul className="space-y-1">
             {features.map((feature, index) => (
               <li key={index} className="flex items-start gap-2 text-sm">
-                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                <span className="w-1.5 h-1.5 bg-crimson-500 rounded-full mt-2 flex-shrink-0"></span>
                 {feature}
               </li>
             ))}
@@ -91,9 +97,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* GitHub Button */}
         <div className="pt-4">
-          <Link href={githubUrl}>
-            <GenericActionButton label='View on GitHub' icon='github' />
-          </Link>
+          {githubUrl && (
+            <Link href={githubUrl}>
+              <GenericActionButton label='View on GitHub' icon='github' />
+            </Link>
+          )}
+
+          {projectUrl && (
+            <Link href={projectUrl}>
+              <GenericActionButton label='View Project' icon='link' />
+            </Link>
+          )}
         </div>
       </div>
     </div>

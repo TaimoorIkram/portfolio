@@ -15,7 +15,8 @@ interface Project {
   skills: string[];
   details: string;
   features: string[];
-  githubUrl: string;
+  githubUrl?: string;
+  projectUrl?: string;
 }
 
 interface ProjectCarouselProps {
@@ -206,7 +207,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
           <button
             key={index}
             onClick={() => goToProject(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-blue-500 w-8' : 'bg-gray-300 hover:bg-gray-400'
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-crimson-500 w-8' : 'bg-gray-300 hover:bg-gray-400'
               }`}
             aria-label={`Go to project ${index + 1}`}
           />
