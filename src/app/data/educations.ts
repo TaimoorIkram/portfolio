@@ -1,4 +1,10 @@
 const institueInfo = {
+    kit: {
+        name: "Karlsruher Institut für Technologie",
+        location: "Karlsruhe, Germany",
+        logo: "/images/icons/kit.png",
+        website: "https://www.kit.edu/"
+    },
     nust: {
         name: "National University of Sciences and Technology",
         location: "Islamabad, Pakistan",
@@ -20,6 +26,21 @@ const institueInfo = {
 }
 
 export const educations = [
+    {
+        institutionName: institueInfo.kit.name,
+        institutionLogoUrl: institueInfo.kit.logo,
+        location: institueInfo.kit.location,
+        degree: "Master of Science",
+        fieldOfStudy: "Computer Science",
+        startDate: "October 2025",
+        endDate: "September 2027",
+        cgpa: "--",
+        maxCgpa: "--",
+        institutionDescription: "Renowned research university in Germany, known for its strong engineering and computer science programs. Offers cutting-edge research opportunities and industry collaborations.",
+        standoutCourses: [],
+        institutionUrl: institueInfo.kit.website,
+        achievements: []
+    },
     {
         institutionName: institueInfo.nust.name,
         institutionLogoUrl: institueInfo.nust.logo,

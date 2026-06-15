@@ -88,7 +88,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                         {roles.map((role, index) => (
                             <div key={index} className="relative pl-8 pb-4 last:pb-0">
                                 {/* Timeline dot */}
-                                <div className="absolute left-2 top-2 w-2 h-2 bg-crimson-500 rounded-full border-2 border-gray-900"></div>
+                                <div className="absolute left-1 top-4 w-4 h-4 bg-crimson-500 rounded-full border-4 border-gray-900"></div>
 
                                 {/* Role content */}
                                 <div

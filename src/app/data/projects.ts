@@ -34,6 +34,22 @@ export const projects: Project[] = [
         projectUrl: 'https://chevecasa.com/'
     },
     {
+        year: '2026',
+        title: 'Ferrum',
+        skills: ['Rust', 'Database Systems', 'Query Parsing', 'Storage Engine'],
+        details: 'A relational database engine built from scratch in Rust, implementing core database systems.',
+        features: [
+            'SQL query parser supporting CREATE, INSERT, SELECT, UPDATE, DELETE',
+            'Disk persistence with registry-based database management',
+            'Hash-based indexing for fast primary key lookups',
+            'Table JOINs with WHERE clause filtering',
+            'Column aggregation (COUNT, MAX, MIN) and ORDER BY',
+            'Primary & foreign key constraints',
+            'CLI REPL interface with command history',
+        ],
+        githubUrl: "https://github.com/TaimoorIkram/ferrum",
+    },
+    {
         year: '2025',
         title: 'NEFT',
         skills: ['Vue.js', 'Django', 'SQLite', 'REST API'],

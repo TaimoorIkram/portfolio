@@ -64,10 +64,10 @@ export default function Home() {
             <div
               className="flex flex-row items-baseline z-10 absolute top-0 left-0 w-[80vw] h-[80vw] -translate-x-[-7.5%] -translate-y-[-7.5%] md:w-[45vw] md:h-[45vw] md:-translate-y-[-5%] md:-translate-x-[-5%] rounded-full flex items-center justify-start overflow-hidden"
             >
-              <Image width={200} height={200}
+              <Image width={1024} height={1024}
                 src="/images/me.png"
                 alt="Background"
-                className="relative scale-110 inset-0 w-[100vw] object-cover"
+                className="relative top-[50%] scale-110 inset-0 w-[100vw] object-cover"
               />
             </div>
             <div

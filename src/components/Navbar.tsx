@@ -48,7 +48,7 @@ export default function Navbar() {
         { onClick: () => scrollToSection(certificatesRef), label: "Certificates" },
         { onClick: () => scrollToSection(experienceRef), label: "Experience" },
         { onClick: () => scrollToSection(interestsRef), label: "Other Interests" },
-        { special: true, download: "/docs/TaimoorIkram_Resume_Test.pdf", icon: "download", label: "Download CV" },
+        { special: true, download: "/docs/Taimoor_Ikram_Lebenslauf_EN.pdf", icon: "download", label: "Download CV" },
     ];
 
     const actionButtons = [<div key={-1}></div>]
